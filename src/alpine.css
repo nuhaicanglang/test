@@ -1,0 +1,831 @@
+/* ALPINE / Editorial sports identity. UI stays outside the HDR render pipeline. */
+.modal-backdrop:not([hidden]) ~ .toast-stack,
+#ui[data-screen="paused"] .toast-stack,
+#ui[data-screen="over"] .toast-stack {
+  display: none;
+}
+.distance-stat > div > span {
+  color: #d4e2e9;
+}
+.hud-tools .icon-button {
+  background: rgba(16, 31, 44, 0.58);
+  border-color: rgba(209, 229, 241, 0.35);
+}
+.game-hud:has(.air-trick:not([hidden])) ~ .toast-stack {
+  top: 287px;
+}
+@media (max-width: 700px) and (min-height: 551px) {
+  .game-hud:has(.air-trick:not([hidden])) ~ .toast-stack {
+    top: 310px;
+  }
+}
+:root {
+  --forest: #eff4f6;
+  --forest-dark: #f5f7f7;
+  --green: #b9cbd5;
+  --orange: #ee633d;
+  --cream: #131d26;
+  --muted: #a4b7c4;
+  --page-gutter: clamp(28px, 4.8vw, 92px);
+}
+body {
+  background: #111b25;
+  color: #f3f7fa;
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #f3ad81;
+  outline-offset: 5px;
+}
+#ui {
+  color: #f1f5f6;
+}
+.menu-vignette {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(7, 18, 28, 0.87),
+      rgba(12, 27, 39, 0.53) 30%,
+      rgba(12, 27, 39, 0.08) 61%,
+      transparent 82%
+    ),
+    linear-gradient(0deg, rgba(7, 18, 28, 0.8), transparent 30%),
+    linear-gradient(180deg, rgba(7, 18, 28, 0.37), transparent 24%);
+}
+.masthead {
+  top: 35px;
+}
+.brand {
+  color: #f2f6f7;
+  gap: 13px;
+}
+.brand-icon {
+  border-color: #e5eef0;
+  width: 43px;
+  height: 43px;
+}
+.brand-wordmark {
+  font-size: 32px;
+  letter-spacing: 0.1px;
+}
+.brand-caption {
+  color: #c2d2da;
+  font-size: 8px;
+  letter-spacing: 4px;
+}
+.edition {
+  color: #c0cfd8;
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+.icon-button {
+  color: #eef5f8;
+  background: rgba(16, 31, 44, 0.42);
+  border: 1px solid rgba(209, 229, 241, 0.23);
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  box-shadow: none;
+}
+.icon-button:hover {
+  background: rgba(55, 79, 95, 0.7);
+  transform: translateY(-1px);
+}
+.menu-content {
+  top: 49%;
+  transform: translateY(-48%);
+  width: 620px;
+  max-width: 47vw;
+}
+.hero-eyebrow {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #c7d6de;
+  gap: 12px;
+  margin-bottom: 27px;
+}
+.hero-eyebrow > span {
+  background: #ee633d;
+  width: 27px;
+}
+.hero-word {
+  font:
+    italic 800 clamp(76px, 8.2vw, 148px) / 0.84 "Barlow Condensed",
+    Impact,
+    sans-serif;
+  letter-spacing: -2px;
+  color: #f3f6f7;
+  text-shadow: 0 4px 32px rgba(8, 20, 30, 0.12);
+}
+.hero-word > span {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(240, 246, 249, 0.91);
+}
+.menu-content h1 {
+  font-size: clamp(25px, 2.5vw, 42px);
+  font-weight: 600;
+  letter-spacing: 4px;
+  line-height: 1.4;
+  margin-top: 29px;
+  color: #f4f7f9;
+}
+.hero-description {
+  font-size: 12px;
+  line-height: 2.1;
+  color: #b8ccd8;
+  margin: 19px 0 28px;
+  letter-spacing: 0.7px;
+}
+.primary-button {
+  background: #eb5e36;
+  color: white;
+  border-radius: 3px;
+  box-shadow: 0 8px 28px rgba(8, 15, 24, 0.15);
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.primary-button:hover {
+  background: #fa754b;
+  box-shadow: 0 9px 30px rgba(213, 74, 31, 0.21);
+}
+.start-button {
+  width: 248px;
+  height: 56px;
+}
+.button-arrow {
+  border-left-color: rgba(255, 255, 255, 0.25);
+}
+.help-button {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #c9d8e0;
+  margin-top: 16px;
+}
+.help-key {
+  border-color: #728b9b;
+  color: #d3e1e8;
+}
+.trail-card {
+  bottom: 130px;
+  width: 282px;
+  border: 1px solid rgba(222, 237, 246, 0.3);
+  border-radius: 3px;
+  background: rgba(13, 29, 41, 0.61);
+  backdrop-filter: blur(14px);
+  box-shadow: none;
+  color: #ebf3f8;
+  padding: 24px;
+}
+.trail-index {
+  color: #f7f8f8;
+  font-size: 32px;
+}
+.trail-index > span {
+  color: #b7c9d3;
+}
+.trail-open {
+  color: #c2d7dc;
+}
+.trail-open i {
+  background: #91bbb5;
+}
+.trail-body .micro-label {
+  color: #a8bdca;
+  letter-spacing: 2px;
+}
+.trail-body h2 {
+  color: #f0f5f7;
+  font-size: 25px;
+  letter-spacing: 2px;
+}
+.trail-subtitle {
+  color: #a8bdca;
+  letter-spacing: 3px;
+}
+.trail-outline {
+  color: #b1c9d8;
+  opacity: 0.75;
+}
+.trail-bottom {
+  color: #a8bdca;
+  border-top-color: rgba(207, 225, 237, 0.19);
+  font-size: 9px;
+}
+.difficulty {
+  color: #ee9a73;
+}
+.difficulty i {
+  background: #ee9a73;
+}
+.menu-footer {
+  color: #c5d4df;
+  border-top-color: rgba(209, 228, 240, 0.25);
+  padding-top: 22px;
+  bottom: 28px;
+}
+.weather-info,
+.best-record,
+.keyboard-hint {
+  color: #b4c8d5;
+}
+.weather-word {
+  color: #b4c8d5;
+}
+.best-record strong {
+  color: #f0f5f7;
+}
+.weather-divider {
+  background: #587181;
+}
+kbd {
+  color: #e0eaf0;
+  border-color: rgba(190, 213, 229, 0.35);
+  background: rgba(17, 35, 49, 0.3);
+}
+.asset-status {
+  position: absolute;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  z-index: 40;
+  width: min(340px, calc(100vw - 40px));
+  padding: 14px 18px;
+  border: 1px solid #6d879b;
+  background: rgba(13, 29, 42, 0.96);
+  color: #dce9f1;
+  border-radius: 4px;
+  font-size: 12px;
+  box-shadow: 0 6px 30px #0b172555;
+  pointer-events: auto;
+}
+.asset-status progress {
+  display: block;
+  margin-top: 10px;
+  width: 100%;
+  height: 3px;
+  accent-color: #ef744b;
+}
+.asset-status button {
+  display: block;
+  margin-top: 10px;
+  background: #eb633c;
+  color: white;
+  padding: 9px 18px;
+  border-radius: 2px;
+}
+.asset-status[hidden] {
+  display: none;
+}
+.game-hud {
+  color: #f3f7fa;
+  text-shadow: 0 1px 5px #09152355;
+}
+.game-hud:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(7, 19, 31, 0.42), transparent 19%),
+    linear-gradient(0deg, rgba(7, 19, 31, 0.32), transparent 26%);
+  pointer-events: none;
+}
+.hud-stats {
+  top: 33px;
+  gap: 28px;
+}
+.distance-stat strong,
+.coins-stat strong,
+.speed-number strong {
+  color: #f2f7fa;
+}
+.distance-stat > .micro-label,
+.speed-meter > .micro-label,
+.speed-number > span,
+.energy-label,
+.boost-key {
+  color: #d4e2e9;
+}
+.coins-stat {
+  color: #ffc183;
+}
+.distance-stat strong {
+  font-size: 70px;
+}
+.avalanche-meter {
+  top: 33px;
+  color: #e6eff5;
+}
+.avalanche-label,
+.avalanche-meter > p {
+  color: #d5e3ed;
+}
+.avalanche-track,
+.energy-track {
+  background: rgba(10, 28, 43, 0.36);
+  border: 1px solid rgba(209, 229, 241, 0.15);
+}
+.avalanche-track > span {
+  background: #b9d6dd;
+}
+.energy-track > span {
+  background: #ee784e;
+}
+.hud-tools {
+  top: 34px;
+}
+.terrain-preview,
+.air-trick,
+.mission-panel,
+.recovery-hud,
+.powerup-badge {
+  background: rgba(13, 31, 45, 0.78);
+  border: 1px solid rgba(196, 220, 235, 0.22);
+  color: #eff4f8;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 25px #07111c17;
+  border-radius: 4px;
+  text-shadow: none;
+}
+.terrain-preview {
+  top: 115px;
+  color: #ddeaf2;
+}
+.terrain-preview > small {
+  color: #bdcdd8;
+}
+.air-trick {
+  top: 153px;
+}
+.air-trick-heading,
+.air-trick-footer,
+.air-trick-main p > span {
+  color: #b9cedb;
+}
+.air-trick-footer b,
+.air-combo-label {
+  color: #eff6f8;
+}
+.air-trick-main p strong {
+  color: #ffb080;
+}
+.air-trick.is-combo,
+.air-trick.is-epic {
+  background: rgba(83, 49, 30, 0.89);
+  color: #ffe2c8;
+}
+.air-trick.is-combo .air-combo-label,
+.air-trick.is-epic .air-turns {
+  color: #ffbd88;
+}
+.mission-panel {
+  width: 244px;
+  padding: 15px 19px;
+}
+.mission-heading,
+.mission-count,
+.mission-list > div,
+.mission-list small {
+  color: #d6e4ed;
+}
+.mission-check {
+  border-color: #acc4d1;
+}
+.mission-list > div.complete {
+  color: #a9d3c0;
+}
+.speed-meter {
+  bottom: 40px;
+}
+.speed-number strong {
+  font-size: 65px;
+}
+.energy-label > span:last-child {
+  color: #f6b48d;
+}
+.boost-key {
+  font-size: 9px;
+}
+.powerup-badge > strong {
+  color: #f6c38d;
+}
+.recovery-hud,
+.recovery-hud[data-tier="3"],
+.recovery-hud[data-tier="4"] {
+  background: rgba(64, 36, 25, 0.91);
+  color: #ffd4b4;
+}
+.recovery-eyebrow,
+.recovery-details {
+  color: #dfb8a2;
+}
+.screen-overlay,
+.modal-backdrop {
+  background: rgba(6, 15, 25, 0.52);
+  backdrop-filter: blur(8px);
+}
+.surface-panel {
+  background: rgba(17, 32, 46, 0.97);
+  color: #f1f5f8;
+  border: 1px solid rgba(159, 189, 211, 0.28);
+  box-shadow: 0 22px 100px #030b1866;
+  border-radius: 7px;
+}
+.surface-panel h2,
+.modal h2,
+.setting-row h3,
+.outfit-title h3 {
+  color: #eef5f8;
+}
+.panel-eyebrow,
+.modal-intro,
+.pause-panel > p,
+.pause-key,
+.result-reason,
+.result-distance > small,
+.result-stats span,
+.settings-note {
+  color: #a9bfcd;
+}
+.text-button,
+.guide-list h3,
+.outfit-button > strong,
+.result-best {
+  color: #d9e6ee;
+}
+.guide-list p,
+.guide-key > small,
+.guide-bottom,
+.touch-guide,
+.setting-row p,
+.outfit-title p {
+  color: #aac0cf;
+}
+.landing-guide {
+  background: #203747;
+}
+.landing-guide h3,
+.landing-guide > p,
+.recovery-tiers b,
+.recovery-tiers small {
+  color: #c3d6e2;
+}
+.landing-guide strong {
+  color: #ffc08d;
+}
+.setting-row,
+.outfit-title,
+.result-stats,
+.result-best {
+  border-color: #314a5c;
+}
+.segmented {
+  background: #0b1e2e;
+  border: 1px solid #385468;
+  border-radius: 3px;
+}
+.segmented > button {
+  color: #adc2d0;
+  min-width: 58px;
+}
+.segmented > button[aria-pressed="true"] {
+  background: #526f83;
+  color: white;
+  box-shadow: none;
+}
+.toggle-button {
+  background: #304a5d;
+}
+.toggle-button[aria-checked="true"] {
+  background: #e7784d;
+}
+.outfit-button {
+  background: #1a3144;
+  border-color: #365265;
+  border-radius: 4px;
+}
+.outfit-button[aria-pressed="true"] {
+  border-color: #e8875d;
+  background: #243b4b;
+}
+.outfit-button > small {
+  color: #bad0df;
+}
+.wallet {
+  color: #f1bc87;
+}
+.outfit-check {
+  background: #e7774b;
+}
+.result-badge {
+  background: #274134;
+  color: #b9d9c5;
+}
+.result-distance > strong,
+.result-stats strong,
+.result-best strong {
+  color: #eff6f8;
+}
+.toast {
+  background: rgba(16, 33, 47, 0.96);
+  border: 1px solid #587387;
+  color: #edf5fa;
+  border-radius: 4px;
+}
+.toast.success {
+  color: #b8e0c7;
+}
+.toast.warning {
+  color: #ffd0b0;
+}
+@media (min-width: 1600px) {
+  .hero-word {
+    font-size: 148px;
+  }
+  .menu-content {
+    max-width: 550px;
+  }
+  .trail-card {
+    width: 300px;
+  }
+}
+@media (max-width: 1000px) {
+  .hero-word {
+    font-size: 90px;
+  }
+  .menu-content {
+    max-width: 52vw;
+  }
+  .hero-eyebrow {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+  .trail-card {
+    width: 238px;
+    padding: 18px;
+  }
+  .trail-body h2 {
+    font-size: 21px;
+  }
+}
+@media (max-width: 700px) {
+  .menu-vignette {
+    background:
+      linear-gradient(90deg, rgba(8, 21, 34, 0.69), rgba(12, 27, 41, 0.23) 80%),
+      linear-gradient(0deg, rgba(8, 20, 32, 0.8), transparent 44%);
+  }
+  .masthead {
+    top: 25px;
+  }
+  .brand-wordmark {
+    font-size: 28px;
+  }
+  .brand-caption {
+    font-size: 7px;
+  }
+  .brand-icon {
+    width: 36px;
+    height: 36px;
+  }
+  .header-tools {
+    gap: 7px;
+  }
+  .header-tools .icon-button {
+    width: 34px;
+    height: 34px;
+  }
+  .menu-content {
+    top: 21%;
+    transform: none;
+    max-width: none;
+    width: calc(100vw - 48px);
+  }
+  .hero-word {
+    font-size: clamp(69px, 16vw, 103px);
+    letter-spacing: -1px;
+  }
+  .hero-eyebrow {
+    margin-bottom: 21px;
+    font-size: 7px;
+    letter-spacing: 1px;
+  }
+  .menu-content h1 {
+    font-size: 27px;
+    margin-top: 22px;
+    letter-spacing: 3px;
+  }
+  .hero-description {
+    font-size: 10px;
+    margin: 15px 0 21px;
+    line-height: 1.9;
+  }
+  .start-button {
+    width: 204px;
+    height: 51px;
+  }
+  .help-button {
+    margin-top: 9px;
+    font-size: 9px;
+  }
+  .trail-card {
+    width: 178px;
+    bottom: 91px;
+    right: 24px;
+    padding: 13px;
+    background: rgba(13, 29, 41, 0.7);
+  }
+  .trail-index {
+    font-size: 23px;
+  }
+  .trail-body {
+    margin: 10px 0;
+  }
+  .trail-body h2 {
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+  .trail-subtitle {
+    font-size: 7px;
+    letter-spacing: 2px;
+  }
+  .trail-bottom {
+    font-size: 7px;
+  }
+  .trail-open {
+    font-size: 7px;
+  }
+  .trail-outline svg {
+    width: 40px;
+  }
+  .menu-footer {
+    bottom: 24px;
+    padding-top: 18px;
+  }
+  .weather-info {
+    font-size: 8px;
+  }
+  .weather-word {
+    display: none;
+  }
+  .best-record {
+    font-size: 8px;
+  }
+  .best-record strong {
+    font-size: 22px;
+  }
+  .hud-stats {
+    top: 24px;
+    gap: 18px;
+  }
+  .distance-stat strong {
+    font-size: 49px;
+  }
+  .hud-tools {
+    top: 24px;
+  }
+  .avalanche-meter {
+    top: 102px;
+  }
+  .terrain-preview {
+    top: 151px;
+  }
+  .air-trick {
+    top: 188px;
+  }
+  .mission-panel {
+    width: 170px;
+    padding: 10px;
+    bottom: 131px;
+  }
+  .speed-meter {
+    bottom: 132px;
+  }
+  .speed-number strong {
+    font-size: 48px;
+  }
+  .segmented > button {
+    min-width: 44px;
+  }
+  .asset-status {
+    bottom: 22px;
+  }
+  .game-help {
+    display: none;
+  }
+}
+@media (pointer: coarse), (max-width: 700px) {
+  .touch-controls button,
+  .touch-controls .touch-mode {
+    background: rgba(13, 33, 49, 0.85);
+    color: #e4f0f7;
+    box-shadow:
+      inset 0 0 0 1px #7995a64d,
+      0 5px 20px #07131f22;
+    backdrop-filter: blur(7px);
+  }
+  .touch-mode > span {
+    color: #b8cad8;
+  }
+  .touch-mode[aria-pressed="false"] [data-mode-steer],
+  .touch-mode[aria-pressed="true"] [data-mode-roll] {
+    background: #546e81;
+    color: white;
+    box-shadow: none;
+  }
+  .roll-mode .touch-steering button[data-touch] {
+    background: #694935;
+    color: #ffe1c4;
+  }
+}
+@media (max-height: 750px) and (max-width: 700px) {
+  .menu-content {
+    top: 19%;
+  }
+  .hero-word {
+    font-size: 72px;
+  }
+  .hero-eyebrow {
+    margin-bottom: 16px;
+  }
+  .menu-content h1 {
+    font-size: 23px;
+    margin-top: 18px;
+  }
+  .hero-description {
+    margin: 11px 0 16px;
+    font-size: 9px;
+  }
+  .start-button {
+    height: 46px;
+  }
+  .trail-card {
+    width: 155px;
+    bottom: 78px;
+    padding: 11px;
+  }
+  .trail-body h2 {
+    font-size: 16px;
+  }
+  .trail-top {
+    display: none;
+  }
+  .trail-body {
+    margin: 0 0 8px;
+  }
+  .trail-bottom {
+    font-size: 6px;
+  }
+  .help-button {
+    font-size: 8px;
+  }
+}
+@media (max-height: 550px) and (min-width: 701px) {
+  .masthead {
+    top: 17px;
+  }
+  .menu-content {
+    top: 105px;
+    transform: none;
+  }
+  .hero-word {
+    font-size: 60px;
+  }
+  .hero-eyebrow {
+    margin-bottom: 12px;
+  }
+  .menu-content h1 {
+    font-size: 21px;
+    margin-top: 13px;
+  }
+  .hero-description {
+    font-size: 9px;
+    margin: 10px 0 12px;
+  }
+  .start-button {
+    height: 42px;
+  }
+  .trail-card {
+    bottom: 78px;
+  }
+  .menu-footer {
+    bottom: 18px;
+  }
+  .help-button {
+    margin-top: 5px;
+  }
+  .terrain-preview {
+    top: 76px;
+  }
+  .air-trick {
+    top: 115px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .primary-button,
+  .icon-button {
+    transform: none !important;
+    transition: none !important;
+  }
+}

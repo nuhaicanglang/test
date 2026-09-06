@@ -1,199 +1,178 @@
-import test from 'node:test';
-import assert from 'node:assert/strict';
+import test from "node:test";
+import assert from "node:assert/strict";
+import { SkiGame, sampleTerrain } from "../src/game.js";
+import { fresh, advance, airborne, landNext, entity } from "./fixtures.js";
+import { EntityField, generateEntities } from "../src/spatial-entities.js";
 
-const api = await import('../src/game.js').catch(() => null);
-
-function fresh(seed = 12) {
-  assert.ok(api?.SkiGame, '游戏应导出 SkiGame');
-  const game = new api.SkiGame({ seed });
-  game.start();
-  game.state.entities = [];
-  game.drainEvents();
-  return game;
-}
-
-function advance(game, seconds, input = {}) {
-  for (let time = 0; time < seconds; time += 1 / 60) game.update(1 / 60, input);
-}
-
-test('公开 API 初始化菜单并提供有限地形高度', () => {
-  assert.ok(api?.SkiGame && api?.terrainHeight, '游戏规则模块应提供约定导出');
-  const game = new api.SkiGame({ seed: 7 });
-  assert.equal(game.state.phase, 'menu');
-  assert.equal(game.state.avalanche, 80);
-  assert.equal(game.state.distance, 0);
-  assert.ok(Number.isFinite(api.terrainHeight(500)));
-  assert.ok(api.terrainHeight(500) < api.terrainHeight(0));
+test("公开接口提供真实二维位置，初始化为菜单", () => {
+  const g = new SkiGame();
+  assert.equal(g.state.phase, "menu");
+  assert.equal(g.state.mode, "freeride");
+  assert.equal(g.state.distance, 0);
+  assert.ok(Number.isFinite(sampleTerrain(500, -700).height));
 });
-
-test('相同种子生成相同赛道且前一百六十米无障碍', () => {
-  const left = fresh(125);
-  const right = fresh(125);
-  left.reset(125);
-  right.reset(125);
-  assert.deepEqual(left.state.entities, right.state.entities);
-  assert.ok(left.state.entities.length >= 15);
-  assert.ok(left.state.entities.every(entity => entity.d >= 40));
-  assert.ok(Math.max(...left.state.entities.map(entity => entity.d)) >= 170);
-  const blockedRows = new Map();
-  for (const entity of left.state.entities.filter(entity => ['tree', 'rock', 'log'].includes(entity.type))) {
-    const count = (blockedRows.get(entity.d) || 0) + 1;
-    blockedRows.set(entity.d, count);
-    assert.ok(entity.d >= 160);
-    assert.ok(count <= 2, '同一排至少保留三条可通过路线');
+test("同种子实体一致，出生点四周六十五米内没有障碍", () => {
+  const a = new SkiGame({ seed: 125 }),
+    b = new SkiGame({ seed: 125 });
+  assert.deepEqual(a.state.entities, b.state.entities);
+  assert.ok(a.state.entities.length > 15);
+  assert.ok(a.state.entities.every((e) => Math.hypot(e.x, e.z) >= 65));
+  assert.ok(a.state.entities.some((e) => e.x > 8));
+  assert.ok(a.state.entities.some((e) => e.x < -8));
+});
+test("暂停同时冻结位置、天气和雪崩，恢复与重置保留接口", () => {
+  const g = fresh();
+  advance(g, 0.3);
+  g.pause();
+  const before = structuredClone(g.state);
+  advance(g, 1);
+  assert.deepEqual(g.state, before);
+  g.resume();
+  advance(g, 0.2);
+  assert.ok(g.state.distance > before.distance);
+  g.reset();
+  assert.equal(g.state.phase, "menu");
+  assert.equal(g.state.coins, 0);
+});
+test("无效帧不移动；持续转向能越过旧边界且朝向可完整掉头", () => {
+  const g = fresh();
+  g.update(NaN);
+  g.update(-1);
+  assert.equal(g.state.distance, 0);
+  g.update(100);
+  assert.ok(g.state.distance < 2);
+  advance(g, 2, { steer: 1, boost: true });
+  assert.ok(g.state.position.x > 8);
+  const h = g.state.heading;
+  advance(g, 0.2);
+  assert.equal(g.state.heading, h);
+  advance(g, 2, { steer: 1 });
+  assert.ok(g.state.heading < 0, "转过 PI 后角度回绕，未受到半圆限制");
+});
+test("上坡借惯性后减速，刹停与撑杖能够重新起步", () => {
+  const g = fresh(0.3);
+  g.state.heading = Math.PI;
+  g.state.velocity.z = 10;
+  g.state.speed = 10;
+  advance(g, 1);
+  assert.ok(g.state.speed < 10);
+  assert.ok(g.state.position.z > 0);
+  const flat = fresh(0);
+  advance(flat, 3, { brake: 1 });
+  assert.equal(flat.state.speed, 0);
+  advance(flat, 1, { tuck: 1 });
+  assert.ok(flat.state.speed > 2);
+});
+test("冰面侧向惯性比粉雪持续更久", () => {
+  const snow = fresh(0, "powder"),
+    ice = fresh(0, "ice");
+  for (const g of [snow, ice]) g.state.velocity = { x: 10, y: 0, z: 0 };
+  advance(snow, 0.5);
+  advance(ice, 0.5);
+  assert.ok(ice.state.velocity.x > snow.state.velocity.x * 2);
+});
+test("斜向高速扫过金币只领取一次", () => {
+  const g = fresh(0);
+  g.state.velocity = { x: 35, y: 0, z: -35 };
+  g.state.heading = Math.PI / 4;
+  g.state.speed = 50;
+  const e = entity("coin", 1, -1);
+  g._testEntities = [e];
+  g.update(0.05);
+  assert.equal(g.state.coins, 1);
+  g.update(0.05);
+  assert.equal(g.state.coins, 1);
+  assert.equal(g.drainEvents().filter((e) => e.type === "coin").length, 1);
+});
+test("高速碰撞一次后进入恢复和无敌窗口", () => {
+  const g = fresh(0);
+  g.state.velocity.z = -50;
+  g.state.speed = 50;
+  g._testEntities = [entity("rock", 0, -2), entity("tree", 0, -3)];
+  g.update(0.05);
+  assert.equal(g.state.crashes, 1);
+  assert.ok(g.state.recovering > 0);
+  g._testEntities = [];
+  advance(g, 1.05);
+  assert.ok(g.state.invincible > 0);
+});
+test("低空越过石块横木，但不能穿过树干", () => {
+  for (const type of ["rock", "log", "tree"]) {
+    const g = airborne(2.2);
+    g._testEntities = [entity(type, 0, 0)];
+    g.update(0.05);
+    assert.equal(g.state.crashes, type === "tree" ? 1 : 0);
   }
 });
-
-test('暂停冻结物理状态，继续后推进，重置清空成绩', () => {
-  const game = fresh();
-  advance(game, 0.3);
-  const distance = game.state.distance;
-  game.pause();
-  advance(game, 0.5);
-  assert.equal(game.state.distance, distance);
-  game.resume();
-  advance(game, 0.1);
-  assert.ok(game.state.distance > distance);
-  game.state.coins = 4;
-  game.reset();
-  assert.equal(game.state.coins, 0);
-  assert.equal(game.state.phase, 'menu');
+test("空中重复跳跃不会重置垂直速度，最终接触地面", () => {
+  const g = fresh(0);
+  g.update(1 / 60, { jump: true });
+  const initial = g.state.vy;
+  advance(g, 0.15, { jump: true });
+  assert.ok(g.state.vy < initial);
+  advance(g, 1.1);
+  assert.equal(g.state.y, 0);
+  assert.equal(g.drainEvents().filter((e) => e.type === "jump").length, 1);
 });
-
-test('超长或无效帧时间不会引发传送且横移受赛道边界限制', () => {
-  const game = fresh();
-  game.update(100, { steer: 1 });
-  assert.ok(game.state.distance < 2);
-  const before = game.state.distance;
-  game.update(Number.NaN);
-  game.update(-5);
-  assert.equal(game.state.distance, before);
-  advance(game, 3, { steer: 1 });
-  assert.ok(game.state.x <= 8 && game.state.x > 6);
-  advance(game, 5, { steer: -1 });
-  assert.ok(game.state.x >= -8 && game.state.x < -6);
+test("天然坡唇和手动跳跃共用完整空翻落地奖励", () => {
+  const g = airborne(30);
+  advance(g, 0.7, { flip: 1 });
+  advance(g, 0.8);
+  landNext(g);
+  g.update(0.01);
+  assert.equal(g.state.flips, 1);
+  assert.equal(g.state.crashes, 0);
+  assert.ok(g.drainEvents().some((e) => e.type === "flip"));
 });
-
-test('高速扫过金币仍会收集且只计一次', () => {
-  const game = fresh();
-  game.state.speed = 100;
-  game.state.entities = [{ id: 'fast-coin', type: 'coin', x: 0, d: 2 }];
-  game.update(0.05);
-  assert.equal(game.state.coins, 1);
-  assert.ok(game.state.score > 0);
-  assert.ok(game.state.avalanche > 80);
-  game.update(0.05);
-  assert.equal(game.state.coins, 1);
-  assert.equal(game.drainEvents().filter(event => event.type === 'coin').length, 1);
+test("未回正落地摔倒，不以抽象雪崩计时立即结束", () => {
+  const g = airborne();
+  g.state.rotation = Math.PI;
+  landNext(g);
+  g.update(0.05);
+  assert.equal(g.state.crashes, 1);
+  assert.equal(g.state.phase, "playing");
+  assert.ok(g.state.recovering > 0);
 });
-
-test('高速扫过障碍触发一次碰撞，先趴地再进入无敌恢复窗口', () => {
-  const game = fresh();
-  game.state.speed = 100;
-  game.state.entities = [
-    { id: 'rock', type: 'rock', x: 0, d: 2 },
-    { id: 'tree', type: 'tree', x: 0, d: 3 },
-  ];
-  game.update(0.05);
-  assert.equal(game.state.crashes, 1);
-  assert.ok(game.state.recovering > 0);
-  assert.equal(game.state.invincible, 0);
-  assert.ok(game.state.avalanche < 75);
-  assert.equal(game.state.phase, 'playing');
-  advance(game, 1.05);
-  assert.ok(game.state.invincible > 0);
+test("护盾阻挡碰撞，磁铁从侧面吸取金币", () => {
+  const g = fresh(0);
+  g.state.shield = 10;
+  g._testEntities = [entity("tree", 0, 0)];
+  g.update(0.01);
+  assert.equal(g.state.crashes, 0);
+  assert.equal(g.state.shield, 0);
+  g.state.magnet = 10;
+  g._testEntities = [entity("coin", 4, 0)];
+  g.update(0.01);
+  assert.equal(g.state.coins, 1);
 });
-
-test('空中越过石块和横木但不能穿过树', () => {
-  for (const type of ['rock', 'log', 'tree']) {
-    const game = fresh();
-    game.state.y = 2.2;
-    game.state.vy = 0;
-    game.state.grounded = false;
-    game.state.entities = [{ id: type, type, x: 0, d: 0.5 }];
-    game.update(0.05);
-    assert.equal(game.state.crashes, type === 'tree' ? 1 : 0);
-  }
+test("企鹅保持限时保护，冲刺消耗能量并提高速度", () => {
+  const g = fresh();
+  g.state.penguin = 8;
+  g._testEntities = [entity("tree", 0, 0)];
+  advance(g, 0.5, { boost: true });
+  assert.equal(g.state.crashes, 0);
+  assert.ok(g.state.energy < 100);
+  assert.ok(g.state.speed > 8);
+  assert.ok(g.state.boosting);
 });
-
-test('跳跃上升后落地，空中重复跳跃不会重置速度', () => {
-  const game = fresh();
-  game.update(1 / 60, { jump: true });
-  const initialVelocity = game.state.vy;
-  assert.ok(game.state.y > 0);
-  advance(game, 0.15, { jump: true });
-  assert.ok(game.state.vy < initialVelocity);
-  advance(game, 1.1);
-  assert.equal(game.state.y, 0);
-  assert.equal(game.state.grounded, true);
-  assert.equal(game.drainEvents().filter(event => event.type === 'jump').length, 1);
+test("没有空间接触时，安全指标为零也不能结束游戏", () => {
+  const g = fresh();
+  g.state.avalanche = 0;
+  advance(g, 1);
+  assert.equal(g.state.phase, "playing");
+  g.endRun("被雪崩卷入");
+  g.endRun("重复");
+  assert.equal(g.drainEvents().filter((e) => e.type === "gameover").length, 1);
 });
-
-test('坡道支持完整空翻，松开后回正落地获得奖励', () => {
-  const game = fresh();
-  game.state.entities = [{ id: 'ramp', type: 'ramp', x: 0, d: 0.5 }];
-  game.update(0.05);
-  assert.ok(game.state.vy > 9);
-  let frames = 0;
-  while (game.state.rotation < Math.PI * 2 && frames++ < 160) game.update(1 / 60, { flip: true });
-  assert.ok(game.state.rotation >= Math.PI * 2);
-  advance(game, 2);
-  assert.ok(game.state.flips >= 1);
-  assert.equal(game.state.crashes, 0);
-  assert.ok(game.state.combo >= 1);
-  assert.ok(game.drainEvents().some(event => event.type === 'flip'));
-});
-
-test('未回正的空翻落地会摔倒但不会立即结束', () => {
-  const game = fresh();
-  Object.assign(game.state, { y: 0.04, vy: -6, rotation: Math.PI, grounded: false });
-  game.update(0.05, { flip: true });
-  assert.equal(game.state.crashes, 1);
-  assert.equal(game.state.phase, 'playing');
-  assert.ok(game.state.avalanche < 75);
-  assert.equal(game.state.crashTier, 1);
-  assert.ok(game.state.recovering > 0);
-});
-
-test('护盾抵挡碰撞且磁铁吸收较远金币', () => {
-  const game = fresh();
-  game.state.entities = [{ id: 'shield', type: 'shield', x: 0, d: 0.3 }];
-  game.update(0.05);
-  assert.ok(game.state.shield > 0);
-  game.state.entities.push({ id: 'tree', type: 'tree', x: 0, d: game.state.distance + 0.4 });
-  game.update(0.05);
-  assert.equal(game.state.crashes, 0);
-  game.state.entities.push({ id: 'magnet', type: 'magnet', x: 0, d: game.state.distance + 0.4 });
-  game.update(0.05);
-  assert.ok(game.state.magnet > 0);
-  game.state.entities.push({ id: 'coin', type: 'coin', x: 4, d: game.state.distance + 0.4 });
-  game.update(0.05);
-  assert.equal(game.state.coins, 1);
-});
-
-test('企鹅提供限时保护与加速，能量冲刺消耗能量并拉开雪崩', () => {
-  const game = fresh();
-  game.state.entities = [{ id: 'penguin', type: 'penguin', x: 0, d: 0.2 }];
-  game.update(0.05);
-  assert.ok(game.state.penguin > 7);
-  const safety = game.state.avalanche;
-  advance(game, 0.5, { boost: true });
-  assert.ok(game.state.energy < 100);
-  assert.ok(game.state.avalanche > safety);
-  assert.ok(game.state.speed > 20);
-  assert.equal(game.state.boosting, true);
-  assert.ok(game.drainEvents().some(event => event.type === 'powerup' && event.kind === 'penguin'));
-});
-
-test('雪崩追上后只发出一次结束事件', () => {
-  const game = fresh();
-  game.state.avalanche = 0.001;
-  game.update(0.05);
-  assert.equal(game.state.phase, 'over');
-  const finalDistance = game.state.distance;
-  advance(game, 1);
-  assert.equal(game.state.distance, finalDistance);
-  const events = game.drainEvents();
-  assert.equal(events.filter(event => event.type === 'gameover').length, 1);
-  assert.deepEqual(game.drainEvents(), []);
+test("区块折返和不同加载顺序保持实体稳定，收集状态不随模型回收丢失", () => {
+  const f = new EntityField(32);
+  const original = f.update(100, 100);
+  const coin = original.find((e) => e.type === "coin");
+  assert.ok(coin);
+  f.collect(coin);
+  f.update(5000, 5000);
+  const back = f.update(100, 100);
+  assert.ok(!back.some((e) => e.id === coin.id));
+  assert.deepEqual(generateEntities(-3, 7, 32), generateEntities(-3, 7, 32));
+  assert.ok(f.tiles.size <= 81);
 });

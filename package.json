@@ -7,8 +7,17 @@
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
     "preview": "vite preview --host 0.0.0.0",
-    "test": "node --test tests/*.test.js"
+    "test": "node --test tests/*.test.js",
+    "test:browser": "node scripts/freeride-qa.mjs",
+    "test:soak": "node scripts/freeride-soak.mjs",
+    "assets:fetch": "node scripts/fetch-materials.mjs"
   },
-  "dependencies": { "three": "^0.180.0" },
-  "devDependencies": { "vite": "^7.1.5" }
+  "dependencies": {
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "playwright": "^1.63.0",
+    "sharp": "^0.35.4",
+    "vite": "^7.1.5"
+  }
 }

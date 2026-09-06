@@ -1,0 +1,468 @@
+{
+  "schemaVersion": 1,
+  "fetchedAt": "2026-09-05T15:31:22.022Z",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://polyhaven.com/license",
+  "assets": [
+    {
+      "name": "snow",
+      "id": "snow_02",
+      "title": "Snow 02",
+      "authors": {
+        "Rob Tuytel": "All"
+      },
+      "source": "https://polyhaven.com/a/snow_02",
+      "published": 1548806533,
+      "channels": {
+        "color": {
+          "original": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/snow_02/snow_02_diff_4k.jpg",
+          "sourceMD5": "6d516278de635715a36cf87ef7facdad",
+          "sourceSHA256": "c4cc87be8833cb73ab154b32da60228e11ae20f91b5057f146d1ffe001b2edc4",
+          "colorSpace": "srgb",
+          "processing": "Lanczos resize; WebP quality 90",
+          "variants": {
+            "1k": {
+              "file": "/materials/snow-color-1k.webp",
+              "bytes": 162160,
+              "sha256": "28a8de364b37f9a8e4b123f489a8ee4043bc6073403e4c973c8b96ecf4da7dd4"
+            },
+            "2k": {
+              "file": "/materials/snow-color-2k.webp",
+              "bytes": 677206,
+              "sha256": "d8e8d87601af286c4aa4e4d6424a13ac892078900acac4f6e56d6f12d3da7a41"
+            },
+            "4k": {
+              "file": "/materials/snow-color-4k.webp",
+              "bytes": 1933434,
+              "sha256": "b58817996fa413ebcf7b1236d21a26ebf6e09f6b3a78f0a28f58950d4269b675"
+            }
+          }
+        },
+        "normal": {
+          "original": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/snow_02/snow_02_nor_gl_4k.png",
+          "sourceMD5": "387669c7823cd31ba07623b8a8883eb1",
+          "sourceSHA256": "5e9938ae9f788a2ab6e9f2d474b1199a992e34d0f35932832e032bd8b9ff6d71",
+          "colorSpace": "linear",
+          "processing": "Lanczos resize; lossless WebP; no transfer-function conversion",
+          "variants": {
+            "1k": {
+              "file": "/materials/snow-normal-1k.webp",
+              "bytes": 1907062,
+              "sha256": "6dde356e74a0fafca48fbe84d6cd4a0541088c5bcd0ffa078c11dd7c33bc391d"
+            },
+            "2k": {
+              "file": "/materials/snow-normal-2k.webp",
+              "bytes": 8190490,
+              "sha256": "57ad69e121b1d810555c5740fd0a7e0e4ef9d3e5963a5f0ac1a51631c69dd7ea"
+            },
+            "4k": {
+              "file": "/materials/snow-normal-4k.webp",
+              "bytes": 31552192,
+              "sha256": "608b7615481179e73f8e6468da28ff99ec966deebffc9eb5839d362fae603fa6"
+            }
+          }
+        },
+        "arm": {
+          "original": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/snow_02/snow_02_arm_4k.png",
+          "sourceMD5": "ef3d987786ede027705423a60fdabed1",
+          "sourceSHA256": "37eecb98651e5c462353cff20d05bb33e0ab1bf1bede8356162bfc280d37b9c8",
+          "colorSpace": "linear",
+          "processing": "Lanczos resize; lossless WebP; no transfer-function conversion",
+          "variants": {
+            "1k": {
+              "file": "/materials/snow-arm-1k.webp",
+              "bytes": 905148,
+              "sha256": "eb7a8f699ffbb273603d44439bf765702a277c9acd970d8ecc083c0b3b41fff9"
+            },
+            "2k": {
+              "file": "/materials/snow-arm-2k.webp",
+              "bytes": 3796084,
+              "sha256": "80b1320095f56237170bbce1a1a7e34f0ed65e0547111c7c3465aad020f75aa3"
+            },
+            "4k": {
+              "file": "/materials/snow-arm-4k.webp",
+              "bytes": 14371380,
+              "sha256": "1008bdf2f74344379ffa8847e4da4f8bef5d2c7c824151ace49f17c77a153b3a"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "rock",
+      "id": "rock_04",
+      "title": "Rock 04",
+      "authors": {
+        "Rob Tuytel": "All"
+      },
+      "source": "https://polyhaven.com/a/rock_04",
+      "published": 1546731812,
+      "channels": {
+        "color": {
+          "original": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/rock_04/rock_04_diff_4k.jpg",
+          "sourceMD5": "2dacbe4a8a181f4ee6c157b4efea94e9",
+          "sourceSHA256": "78ab2ead76dca015340c9080fe5a0a2e4ca12604b797308e2bcea95b022b3b6c",
+          "colorSpace": "srgb",
+          "processing": "Lanczos resize; WebP quality 90",
+          "variants": {
+            "1k": {
+              "file": "/materials/rock-color-1k.webp",
+              "bytes": 493594,
+              "sha256": "5ea4356ebda47824d286f79f87ed8e4c2dcbb51585825bba80c03f2c343b7b83"
+            },
+            "2k": {
+              "file": "/materials/rock-color-2k.webp",
+              "bytes": 1817174,
+              "sha256": "9b6ddebab36ec355b149deadd6730a2d2c2294fac742e3a69e1e52edfecad6f4"
+            },
+            "4k": {
+              "file": "/materials/rock-color-4k.webp",
+              "bytes": 5547090,
+              "sha256": "6a181f8d2de35ab451a741931ec6f7fafbb81257621fa24b3fb000874a6ce4c5"
+            }
+          }
+        },
+        "normal": {
+          "original": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/rock_04/rock_04_nor_gl_4k.png",
+          "sourceMD5": "fce56f4e69fb6fe7666cb93df4e99e0a",
+          "sourceSHA256": "031dd6805e0096f321d311db49dde42feddda9481074c15e41755df9b54f7199",
+          "colorSpace": "linear",
+          "processing": "Lanczos resize; lossless WebP; no transfer-function conversion",
+          "variants": {
+            "1k": {
+              "file": "/materials/rock-normal-1k.webp",
+              "bytes": 1982746,
+              "sha256": "ab3c6b75bccd88edd49d1ec132545e3c822a3e5e7bc25b2f5e4baafffdc8df60"
+            },
+            "2k": {
+              "file": "/materials/rock-normal-2k.webp",
+              "bytes": 7609950,
+              "sha256": "1f7653a1d566731b1439572f3bb5d74e5717b5a3c863ad000c6b66dab183121d"
+            },
+            "4k": {
+              "file": "/materials/rock-normal-4k.webp",
+              "bytes": 25456820,
+              "sha256": "57b8830429cb3ae48e9fc7ba314c5a2839b77ea67366d51a308ef9b4d4678b6b"
+            }
+          }
+        },
+        "arm": {
+          "original": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/rock_04/rock_04_arm_4k.png",
+          "sourceMD5": "ae675ca6b7133589ee8b7a8e58c76ec9",
+          "sourceSHA256": "3c88144565086dbf361ec520ae37762c7d8d5fed9dd23dd6379850d7fddc1596",
+          "colorSpace": "linear",
+          "processing": "Lanczos resize; lossless WebP; no transfer-function conversion",
+          "variants": {
+            "1k": {
+              "file": "/materials/rock-arm-1k.webp",
+              "bytes": 1332198,
+              "sha256": "754c8c068bd526823db02c39775ff9d38be0974c3b39243e181ec375aa1081cf"
+            },
+            "2k": {
+              "file": "/materials/rock-arm-2k.webp",
+              "bytes": 5168164,
+              "sha256": "8e53e0575793833cdc87a98daed08c8389c9d69fb8f3c1c30228aa3ca52b2e58"
+            },
+            "4k": {
+              "file": "/materials/rock-arm-4k.webp",
+              "bytes": 19269646,
+              "sha256": "2e0bacccf2b056a4629a7a35486f9888a4051bfa6af29886e9f0bff344c09397"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "bark",
+      "id": "bark_brown_01",
+      "title": "Bark Brown 01",
+      "authors": {
+        "Rob Tuytel": "All"
+      },
+      "source": "https://polyhaven.com/a/bark_brown_01",
+      "published": 1544859341,
+      "channels": {
+        "color": {
+          "original": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/bark_brown_01/bark_brown_01_diff_2k.jpg",
+          "sourceMD5": "844daf37120a327bb77ac907102d69c0",
+          "sourceSHA256": "0cdd066f34d357fdbf7eb99159e668a6dc346bb7fd093a9e27058eb827d09b9a",
+          "colorSpace": "srgb",
+          "processing": "Lanczos resize; WebP quality 90",
+          "variants": {
+            "1k": {
+              "file": "/materials/bark-color-1k.webp",
+              "bytes": 434584,
+              "sha256": "fda8a75b1810bc6046c3997b6bd1a42cc9ab0985ae93ce6074ca7445d817b1d8"
+            },
+            "2k": {
+              "file": "/materials/bark-color-2k.webp",
+              "bytes": 1629002,
+              "sha256": "c838bad16760416a687e2012b4dc3ae40a8497d77932225990653051f9ea0264"
+            }
+          }
+        },
+        "normal": {
+          "original": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/bark_brown_01/bark_brown_01_nor_gl_2k.png",
+          "sourceMD5": "a77b22b7c37a3a29b4da0973d994d920",
+          "sourceSHA256": "c5d2c162ee3e30a36dfb717fde6703e0202ab9c49fbfe205da521a48d7a5a595",
+          "colorSpace": "linear",
+          "processing": "Lanczos resize; lossless WebP; no transfer-function conversion",
+          "variants": {
+            "1k": {
+              "file": "/materials/bark-normal-1k.webp",
+              "bytes": 2223524,
+              "sha256": "4f8efcc7052c1ff18240b4008db8ad2a14eee346beb736ee827bb8eeffaa453a"
+            },
+            "2k": {
+              "file": "/materials/bark-normal-2k.webp",
+              "bytes": 8584954,
+              "sha256": "3c30aad671ff5a9d8371be9631d6af047f8e793df337a13e5b9945c28121371b"
+            }
+          }
+        },
+        "arm": {
+          "original": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/bark_brown_01/bark_brown_01_arm_2k.png",
+          "sourceMD5": "6ca710cc0baf461aeeeab5ebeb5ece0a",
+          "sourceSHA256": "3e38183d3f45a38fc1a6a6ce858047e06aca80a3168100d0ed5be5dd0faa47c3",
+          "colorSpace": "linear",
+          "processing": "Lanczos resize; lossless WebP; no transfer-function conversion",
+          "variants": {
+            "1k": {
+              "file": "/materials/bark-arm-1k.webp",
+              "bytes": 1188268,
+              "sha256": "e299b159e1059222193e442b53a03b2fcfad877e9a4685ed07f8978c0de6db44"
+            },
+            "2k": {
+              "file": "/materials/bark-arm-2k.webp",
+              "bytes": 4264638,
+              "sha256": "f9513ebfa8257e50623ab564026aeba3e104ec48f58e492e93ffec188b4201bd"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "wood",
+      "id": "wood_planks_grey",
+      "title": "Wood Planks Grey",
+      "authors": {
+        "Rob Tuytel": "All"
+      },
+      "source": "https://polyhaven.com/a/wood_planks_grey",
+      "published": 1632182400,
+      "channels": {
+        "color": {
+          "original": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/wood_planks_grey/wood_planks_grey_diff_2k.jpg",
+          "sourceMD5": "91ca23c2f5584014f465a3a50ada472f",
+          "sourceSHA256": "31bdd475c6f1520fccc34a6823bfab8ba61ce5fd6dd97a3d1d868c21295e1000",
+          "colorSpace": "srgb",
+          "processing": "Lanczos resize; WebP quality 90",
+          "variants": {
+            "1k": {
+              "file": "/materials/wood-color-1k.webp",
+              "bytes": 272698,
+              "sha256": "096b31cd24a836d9bd7157e544fc941c628d215c14f42b508006d01db2ffacaf"
+            },
+            "2k": {
+              "file": "/materials/wood-color-2k.webp",
+              "bytes": 1078802,
+              "sha256": "e981b071f83084d1659e6c1916a12a5266f1ee87bb971055f8f3262731a641cb"
+            }
+          }
+        },
+        "normal": {
+          "original": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/wood_planks_grey/wood_planks_grey_nor_gl_2k.png",
+          "sourceMD5": "b21bfa0d5511ed33d749ca66d3d11cbe",
+          "sourceSHA256": "c8cc509c74efa77bf9e2f09002b32dbf0cb12913494c664070d599a182fbcaf0",
+          "colorSpace": "linear",
+          "processing": "Lanczos resize; lossless WebP; no transfer-function conversion",
+          "variants": {
+            "1k": {
+              "file": "/materials/wood-normal-1k.webp",
+              "bytes": 1364254,
+              "sha256": "aef1b472afc2395f667317a9ae68e5ceb30c13f09ab8a4b0303b4b31d671dbe6"
+            },
+            "2k": {
+              "file": "/materials/wood-normal-2k.webp",
+              "bytes": 4660600,
+              "sha256": "70fc2d5e5d189248900b4805452a9836a8d01dcf1cb43c208bf5fff75307a9b5"
+            }
+          }
+        },
+        "arm": {
+          "original": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/wood_planks_grey/wood_planks_grey_arm_2k.png",
+          "sourceMD5": "30dc84ae176b5b5fd46a5e6559b5ccf6",
+          "sourceSHA256": "62dd53b737524c54b29abb163ac3e7e15cb2b6e37314d7fbd2aea8e2ae25c0b3",
+          "colorSpace": "linear",
+          "processing": "Lanczos resize; lossless WebP; no transfer-function conversion",
+          "variants": {
+            "1k": {
+              "file": "/materials/wood-arm-1k.webp",
+              "bytes": 902828,
+              "sha256": "a49ac31598d5c5d72db3edcab047c8be57dba376977c65471d80006aa9c431d4"
+            },
+            "2k": {
+              "file": "/materials/wood-arm-2k.webp",
+              "bytes": 3638760,
+              "sha256": "0fed121500da0d5f507c64a3c28d965a7d8d8b22f582d1fba23e33eee1efab82"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "fabric",
+      "id": "denim_fabric_05",
+      "title": "Denim Fabric 05",
+      "authors": {
+        "colormass": "Photography",
+        "Rico Cilliers": "Processing"
+      },
+      "source": "https://polyhaven.com/a/denim_fabric_05",
+      "published": 1757078158,
+      "channels": {
+        "normal": {
+          "original": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/denim_fabric_05/denim_fabric_05_nor_gl_2k.png",
+          "sourceMD5": "9b38ac1d473c3eb5642823a5af99359e",
+          "sourceSHA256": "43d2311dde535ad749decf73a1e646404f33a25c0e12eaae8731f8a17be8793b",
+          "colorSpace": "linear",
+          "processing": "Lanczos resize; lossless WebP; no transfer-function conversion",
+          "variants": {
+            "1k": {
+              "file": "/materials/fabric-normal-1k.webp",
+              "bytes": 1911686,
+              "sha256": "41453ac250db22e2d61d4d51b97129d57999efec0d25b32827401326a3a167bf"
+            },
+            "2k": {
+              "file": "/materials/fabric-normal-2k.webp",
+              "bytes": 8600034,
+              "sha256": "d8a6f249eea4b3ed340ab9eafd92e57387d3464b36b1bc588d5678dc05ef99a1"
+            }
+          }
+        },
+        "arm": {
+          "original": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/denim_fabric_05/denim_fabric_05_arm_2k.png",
+          "sourceMD5": "08d2610a0d5371284119d4e05ef1782d",
+          "sourceSHA256": "622fe7468079b289704dd9a3a7572bc519e75efe7678b738d3b5f7dc19d70cd5",
+          "colorSpace": "linear",
+          "processing": "Lanczos resize; lossless WebP; no transfer-function conversion",
+          "variants": {
+            "1k": {
+              "file": "/materials/fabric-arm-1k.webp",
+              "bytes": 2123026,
+              "sha256": "1d03aa08d481124bb538d3eddfca8ca1e78b6fd432d66c93acd0ef0083008416"
+            },
+            "2k": {
+              "file": "/materials/fabric-arm-2k.webp",
+              "bytes": 9477244,
+              "sha256": "c2dcccb4b6df66f1e101360829bfb6a08eca43cce1f42e7c16cef90c8bd6eba4"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "pine",
+      "id": "pine_tree_01",
+      "title": "Pine Tree 01",
+      "authors": {
+        "Rob Tuytel": "photography",
+        "Rico Cilliers": "modeling"
+      },
+      "source": "https://polyhaven.com/a/pine_tree_01",
+      "published": 1687478400,
+      "channels": {
+        "color": {
+          "original": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/2k/pine_tree_01/pine_tree_01_twig_diff_2k.jpg",
+          "sourceMD5": "45d577b1b780711976147d66234a1f4c",
+          "sourceSHA256": "288f8752514dfcfb78e5d6bc927b585605a13b050a1a79de78044f7c0574c0fc",
+          "colorSpace": "srgb",
+          "processing": "Lanczos resize; WebP quality 90",
+          "variants": {
+            "1k": {
+              "file": "/materials/pine-color-1k.webp",
+              "bytes": 156274,
+              "sha256": "00419576a081f8d642b7d52356b91b39dc08793573b317add92d40fcfadd739e"
+            },
+            "2k": {
+              "file": "/materials/pine-color-2k.webp",
+              "bytes": 434232,
+              "sha256": "f821bd1581478ba02e7d2fc69a3b6e039ce220cc9a12ca88e2e8f226e577cc1d"
+            }
+          }
+        },
+        "normal": {
+          "original": "https://dl.polyhaven.org/file/ph-assets/Models/png/2k/pine_tree_01/pine_tree_01_twig_nor_gl_2k.png",
+          "sourceMD5": "3ebdf235873ec43c44528a0efcbd8892",
+          "sourceSHA256": "546a19689795dd28a48f041ae5a4ff4c6273648b2e0d32d40df6b48cdc122b99",
+          "colorSpace": "linear",
+          "processing": "Lanczos resize; lossless WebP; no transfer-function conversion",
+          "variants": {
+            "1k": {
+              "file": "/materials/pine-normal-1k.webp",
+              "bytes": 1129306,
+              "sha256": "f00af5b5eabd6e8abbdd9239f03f618c02aa36d96ff6f5a3ae7e067dcf843ab9"
+            },
+            "2k": {
+              "file": "/materials/pine-normal-2k.webp",
+              "bytes": 3015602,
+              "sha256": "05c3d6b6aa551dcf44589770d248760d424009f324e7ab927bb3130e3bb85b5d"
+            }
+          }
+        },
+        "arm": {
+          "original": "https://dl.polyhaven.org/file/ph-assets/Models/png/2k/pine_tree_01/pine_tree_01_twig_arm_2k.png",
+          "sourceMD5": "ec8628986ae8329bae14512f42d54d1a",
+          "sourceSHA256": "673ad5bded7614adf12c0faaa4c74703be7e33e71d376740734be82da721f76f",
+          "colorSpace": "linear",
+          "processing": "Lanczos resize; lossless WebP; no transfer-function conversion",
+          "variants": {
+            "1k": {
+              "file": "/materials/pine-arm-1k.webp",
+              "bytes": 465986,
+              "sha256": "a8e6880e0c56508fbc1ead9f658193bd3e134a41dc54ebab434df4e277408a4b"
+            },
+            "2k": {
+              "file": "/materials/pine-arm-2k.webp",
+              "bytes": 1203254,
+              "sha256": "0f5edc71e74b72acd59da8827474b97f62634cac7a6cfe9151a7a3453e711485"
+            }
+          }
+        },
+        "alpha": {
+          "original": "https://dl.polyhaven.org/file/ph-assets/Models/png/2k/pine_tree_01/pine_tree_01_twig_alpha_2k.png",
+          "sourceMD5": "85f9f62d98dc35cce642895d75f79fa6",
+          "sourceSHA256": "1e5a1fe741f4cb731a3f537589db62a1cbcd380775e44d13f1b88b9e717df56b",
+          "colorSpace": "linear",
+          "processing": "Lanczos resize; lossless WebP; no transfer-function conversion",
+          "variants": {
+            "1k": {
+              "file": "/materials/pine-alpha-1k.webp",
+              "bytes": 102050,
+              "sha256": "a47bcdb62fc645147cfc586e67abb18343daf231b5aa94b299e25f4ffa83b69b"
+            },
+            "2k": {
+              "file": "/materials/pine-alpha-2k.webp",
+              "bytes": 188170,
+              "sha256": "1d67b13523308236477c3045d0bf495e9b113531119da5b82f5158007dc1ae84"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "environment",
+      "id": "passendorf_snow",
+      "authors": {
+        "Grzegorz Wronkowski": "All"
+      },
+      "source": "https://polyhaven.com/a/passendorf_snow",
+      "license": "CC0-1.0",
+      "file": "/materials/winter-environment-2k.hdr",
+      "original": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/2k/passendorf_snow_2k.hdr",
+      "sha256": "21476e3b0e1835b397cb47441543213e593f922f4a230c749c7b42376dd1805f",
+      "bytes": 5514266,
+      "processing": "Original 2K Radiance HDR; runtime PMREM convolution"
+    }
+  ]
+}
